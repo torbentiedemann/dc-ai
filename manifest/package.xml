@@ -6,11 +6,15 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>PromptSetting__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
         <members>*</members>
         <name>CustomMetadata</name>
     </types>
     <types>
-        <members>*</members>
+        <members>NC_OpenAI</members>
         <name>NamedCredential</name>
     </types>
     <types>
