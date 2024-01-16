@@ -19,6 +19,18 @@ You make sure to generate questions for a multitude of areas (e.g. experience, s
         <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
+        <field>ProcessType__c</field>
+        <value xsi:nil="true" />
+    </values>
+    <values>
+        <field>ReplyCode__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>SObject__c</field>
+        <value xsi:nil="true" />
+    </values>
+    <values>
         <field>Template__c</field>
         <value xsi:nil="true" />
     </values>

@@ -34,6 +34,38 @@ public class OpenAIChat {
     public String model;
   }
 
+  public class TaskWrapper {
+    public String Subject;
+    public String Status;
+    public String Priority;
+    public String WhatId;
+    public String WhoId;
+    public String OwnerId;
+    public Date ActivityDate;
+    public String Description;
+  }
+
+  public static List<Task> parseTasks(String jsonString) {
+    List<TaskWrapper> tasks = (List<TaskWrapper>) JSON.deserialize(
+      jsonString,
+      List<TaskWrapper>.class
+    );
+    List<Task> sObjectTasks = new List<Task>();
+    for (TaskWrapper t : tasks) {
+      Task newTask = new Task();
+      newTask.Subject = t.Subject;
+      newTask.Status = t.Status;
+      newTask.Priority = t.Priority;
+      newTask.WhatId = t.WhatId;
+      newTask.WhoId = t.WhoId;
+      newTask.OwnerId = t.OwnerId;
+      newTask.ActivityDate = t.ActivityDate;
+      newTask.Description = t.Description;
+      sObjectTasks.add(newTask);
+    }
+    return sObjectTasks;
+  }
+
   /**
    * Invocable method to get the chat completion.
    * @param inputs The list of ChatInput objects containing the input parameters.
@@ -46,7 +78,12 @@ public class OpenAIChat {
     String endpoint = 'callout:NC_OpenAI/chat/completions';
     List<Object> messages = new List<Object>();
 
-    PromptSetting__mdt ps = PromptSetting__mdt.getInstance(inputs[0].mode);
+    PromptSetting__mdt ps = [
+      SELECT Id, Instructions__c, ReplyCode__c, SObject__c
+      FROM PromptSetting__mdt
+      WHERE DeveloperName = :inputs[0].mode
+      LIMIT 1
+    ];
 
     if (!String.isBlank(inputs[0].messagesString) && inputs[0].includeHistory) {
       messages = (List<Object>) JSON.deserializeUntyped(
@@ -98,7 +135,7 @@ public class OpenAIChat {
     Http http = new Http();
     HttpResponse response = http.send(request);
 
-    System.debug(response.getBody());
+    //System.debug(response.getBody());
     // Parse the response and return the content attribute
     Map<String, Object> responseBody = (Map<String, Object>) JSON.deserializeUntyped(
       response.getBody()
@@ -106,9 +143,18 @@ public class OpenAIChat {
     List<Object> choices = (List<Object>) responseBody.get('choices');
     Map<String, Object> message = (Map<String, Object>) ((Map<String, Object>) choices[0])
       .get('message');
+    String content = (String) message.get('content');
+
+    if (ps.ReplyCode__c) {
+      system.debug(content);
+      List<Task> tasks = parseTasks(content);
+      system.debug('Tasks: ' + tasks);
+      insert tasks;
+    }
+
     List<ChatOutput> chatOutputs = new List<ChatOutput>();
     ChatOutput chatOutput = new ChatOutput();
-    chatOutput.res = (String) message.get('content');
+    chatOutput.res = content;
     chatOutput.messagesString = JSON.serialize(messages);
     chatOutputs.add(chatOutput);
 

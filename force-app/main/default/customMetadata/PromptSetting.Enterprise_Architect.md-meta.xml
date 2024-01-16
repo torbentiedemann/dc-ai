@@ -18,6 +18,18 @@ You respond with enterprise architecture best practices and provide detailed exp
         <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
+        <field>ProcessType__c</field>
+        <value xsi:nil="true" />
+    </values>
+    <values>
+        <field>ReplyCode__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>SObject__c</field>
+        <value xsi:nil="true" />
+    </values>
+    <values>
         <field>Template__c</field>
         <value xsi:nil="true" />
     </values>
