@@ -82,13 +82,13 @@
         <name>MeetingNotesPrompt</name>
         <dataType>String</dataType>
         <expression
-    >{!Get_Meeting_Notes_Formatter.DCGPT__Instructions__c} + {!$Record.Description}</expression>
+    >{!Get_Meeting_Notes_Formatter.Instructions__c} + {!$Record.Description}</expression>
     </formulas>
     <formulas>
         <name>TaskPrompt</name>
         <dataType>String</dataType>
         <expression
-    >&quot;Meeting notes: &quot; + {!$Record.Description} + &quot; Instructions: &quot; +  {!Get_Task_Create.DCGPT__Instructions__c} + &quot; accountId = &quot; + {!$Record.WhatId} + &quot; contactId= &quot; + {!$Record.WhoId} + &quot; userId= &quot; + {!$User.Id} + &quot; todays date: &quot; + TEXT({!$Record.LastModifiedDate}) + &quot; managertId= &quot; + {!$User.DCGPT__AssistantId__c}</expression>
+    >&quot;Meeting notes: &quot; + {!$Record.Description} + &quot; Instructions: &quot; +  {!Get_Task_Create.Instructions__c} + &quot; accountId = &quot; + {!$Record.WhatId} + &quot; contactId= &quot; + {!$Record.WhoId} + &quot; userId= &quot; + {!$User.Id} + &quot; todays date: &quot; + TEXT({!$Record.LastModifiedDate}) + &quot; managertId= &quot;</expression>
     </formulas>
     <interviewLabel
   >Event After-Save Flow {!$Flow.CurrentDateTime}</interviewLabel>

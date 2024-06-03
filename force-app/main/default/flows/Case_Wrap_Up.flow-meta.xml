@@ -417,37 +417,37 @@
         <name>ClassificationPrompt</name>
         <dataType>String</dataType>
         <expression
-    >{!Get_Classification.DCGPT__Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
+    >{!Get_Classification.Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
     </formulas>
     <formulas>
         <name>NextStepsPrompt</name>
         <dataType>String</dataType>
         <expression
-    >{!Get_next_steps.DCGPT__Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
+    >{!Get_next_steps.Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
     </formulas>
     <formulas>
         <name>OrderPrompt</name>
         <dataType>String</dataType>
         <expression
-    >{!Get_order_number.DCGPT__Instructions__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
+    >{!Get_order_number.Instructions__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
     </formulas>
     <formulas>
         <name>Prompt</name>
         <dataType>String</dataType>
         <expression
-    >{!Get_CMT.DCGPT__Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
+    >{!Get_CMT.Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
     </formulas>
     <formulas>
         <name>Reply</name>
         <dataType>String</dataType>
         <expression
-    >{!Reply_Get.DCGPT__Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
+    >{!Reply_Get.Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
     </formulas>
     <formulas>
         <name>SentimentPrompt</name>
         <dataType>String</dataType>
         <expression
-    >{!Get_sentiment.DCGPT__Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
+    >{!Get_sentiment.Template__c} + &quot; Here is the conversation to summarize: &quot; + {!$Record.Description}</expression>
     </formulas>
     <interviewLabel>Case Wrap-Up {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Case Wrap-Up</label>
